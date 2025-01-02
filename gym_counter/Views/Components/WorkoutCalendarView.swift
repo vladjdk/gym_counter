@@ -38,11 +38,6 @@ struct WorkoutCalendarView: View {
                     .font(.system(size: 18))
                     .foregroundStyle(Color(UIColor.label))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(
-                        workout != nil ?
-                            .green.opacity(0.2) :
-                            Color.clear
-                    )
                     .overlay {
                         RoundedRectangle(cornerRadius: 12)
                             .stroke(
@@ -50,6 +45,11 @@ struct WorkoutCalendarView: View {
                                     .green :
                                     Color(UIColor.systemGray),
                                 lineWidth: 1
+                            )
+                            .fill(
+                                workout != nil ?
+                                    .green.opacity(0.2) :
+                                    Color.clear
                             )
                     }
                 
