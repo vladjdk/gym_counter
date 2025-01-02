@@ -2,8 +2,6 @@ import SwiftUI
 import CoreData
 import HorizonCalendar
 
-
-
 struct ContentView: View {
     @StateObject private var workoutStore = WorkoutStore()
     @State private var selectedDate: Date?
