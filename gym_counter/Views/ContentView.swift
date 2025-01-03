@@ -28,8 +28,8 @@ struct ContentView: View {
         let calendar = Calendar.current
         
         let now = Date()
-        let startDate = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: now))!
-        let endDate = calendar.date(byAdding: DateComponents(day: calendar.range(of: .day, in: .year, for: now)!.count - 1), to: startDate)!
+        let startDate = calendar.date(byAdding: .year, value: -1, to: now)!
+        let endDate = calendar.date(byAdding: .year, value: 1, to: now)!
         
         VStack(spacing: 16) {
             // Workout Counter
