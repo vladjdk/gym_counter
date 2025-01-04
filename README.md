@@ -10,6 +10,10 @@
 - total workout counter
 - legend explaining colors
 
+## Wishlist
+- make it exciting to log daily
+- make it exciting to share results with friends
+
 ## Current Screenshots
 
 ![Main Page](assets/main.png)
