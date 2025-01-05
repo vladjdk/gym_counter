@@ -13,6 +13,8 @@
 ## Wishlist
 - make it exciting to log daily
 - make it exciting to share results with friends
+- open calendar at correct spot and allow for infinity lazy load
+- github green square vibes
 
 ## Current Screenshots
 
