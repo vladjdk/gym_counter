@@ -17,13 +17,16 @@ struct WorkoutCalendarView: View {
     let workoutStore: WorkoutStore
     @Binding var selectedDate: Date?
     @Binding var showingWorkoutSheet: Bool
+    @StateObject private var calendarViewProxy = CalendarViewProxy()
     
     var body: some View {
+        let now = Date()
         CalendarViewRepresentable(
             calendar: calendar,
             visibleDateRange: startDate...endDate,
             monthsLayout: .horizontal(options: HorizontalMonthsLayoutOptions()),
-            dataDependency: workoutStore.workouts.count
+            dataDependency: workoutStore.workouts.count,
+            proxy: calendarViewProxy
         )
         .onDaySelection { day in
             selectedDate = calendar.date(from: day.components)
@@ -72,5 +75,27 @@ struct WorkoutCalendarView: View {
         .verticalDayMargin(8)
         .horizontalDayMargin(8)
         .padding(10.0)
+        .onAppear {
+            let calendar = Calendar.current
+            
+            let firstDayOfMonth = calendar.date(from:calendar.dateComponents([.year, .month], from: Date())) ?? Date()
+            print(firstDayOfMonth)
+            let components = calendar.dateComponents([.weekday], from: firstDayOfMonth)
+            
+            let weekday = components.weekday ?? 0
+            
+            print(weekday)
+            print(components)
+            
+            var date = firstDayOfMonth
+            
+            if weekday != 1 && weekday != 0 {
+                date = calendar.date(byAdding: .day, value: 7 - weekday + 1, to: date) ?? date
+            }
+            
+            print(date)
+            
+            calendarViewProxy.scrollToDay(containing: date, scrollPosition: .firstFullyVisiblePosition, animated: false)
+        }
     }
 }
